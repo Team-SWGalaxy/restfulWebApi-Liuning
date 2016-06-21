@@ -28,5 +28,8 @@ router.get('/products/:id', function (req, res) {
         getOneItem(res, req, data);
     });
 });
-
+router.use(function (err, req, res, next) {
+    console.error(err);
+    res.status('404').send();
+});
 module.exports = router;

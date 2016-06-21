@@ -25,12 +25,11 @@ function deleteItem(data, req, res) {
     }
     return flag;
 }
-router.delete('/products/:id', function (req, res) {
+router.delete('/products/:id', function (req, res,next) {
     fs.readFile('./items.json', 'utf-8', function (err, data) {
         if (err) {
-            console.log(err);
 
-            return;
+            return next();
         }
         var data = JSON.parse(data);
         var flag = deleteItem(data, req, res);
@@ -38,5 +37,9 @@ router.delete('/products/:id', function (req, res) {
             res.status('404').end();
         }
     });
+});
+router.use(function (err, req, res, next) {
+    console.error(err);
+    res.status('404').send();
 });
 module.exports = router;

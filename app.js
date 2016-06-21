@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-var json = require('./textJson');
+// var json = require('./textJson');
 
 app.use('/',require('./deleteItem.js'));
 app.use('/',require('./getAllItems'));
